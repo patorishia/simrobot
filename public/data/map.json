@@ -1,0 +1,73 @@
+{
+    "points":[
+        {"id": "A", "x": 0, "y": 0, "bridges":["E"], "connects":["E"]},
+
+        {"id": "B", "x": 1500, "y": 0, "bridges":["F"], "connects":["F"]},
+
+        {"id": "C", "x": 3000, "y": 0, "bridges":["G"], "connects":["G"]},
+
+        {"id": "D", "x": 4500, "y": 0, "bridges":["H"], "connects":["H"]},
+
+        {"id": "E", "x": 0, "y": 2175, "bridges":["N","F"], "connects":["N","F","A"]},
+
+        {"id": "F", "x": 1500, "y": 2175, "bridges":["G"], "connects":["E","B","G"]},
+
+        {"id": "G", "x": 3000, "y": 2175, "bridges":["H"], "connects":["C","F","H"]},
+
+        {"id": "H", "x": 4500, "y": 2175, "bridges":["I"], "connects":["G","D","I"]},
+
+        {"id": "I", "x": 6925, "y": 2175, "bridges":["J","ST2"], "connects":["H","J","ST2"]},
+
+        {"id": "ST2", "x": 13850, "y": 2175, "bridges":["M"], "connects":["M","I"]},
+
+        {"id": "J", "x": 6925, "y": 4300, "bridges":["K","Q"], "connects":["I","Q","K"]},
+
+        {"id": "K", "x": 9525, "y": 4300, "bridges":[], "connects":["J"]},
+
+        {"id": "L", "x": 11250, "y": 4300, "bridges":["M"], "connects":["M"]},
+
+        {"id": "M", "x": 13850, "y": 4300, "bridges":["T"], "connects":["ST2","L","T"]},
+        
+        {"id": "N", "x": 0, "y": 5800, "bridges":["O","U"], "connects":["E","O","U"]},
+        
+        {"id": "O", "x": 2600, "y": 5800, "bridges":[], "connects":["N"]},
+        
+        {"id": "P", "x": 4325, "y": 5800, "bridges":["Q"], "connects":["Q"]},
+        
+        {"id": "Q", "x": 6925, "y": 5800, "bridges":["R","Y"], "connects":["P","J","R","Y"]},
+        
+        {"id": "R", "x": 9525, "y": 5800, "bridges":[], "connects":["Q"]},
+        
+        {"id": "S", "x": 11250, "y": 5800, "bridges":["T"], "connects":["T"]},
+        
+        {"id": "T", "x": 13850, "y": 5800, "bridges":["AC"], "connects":["AC","S","M"]},
+        
+        {"id": "U", "x": 0, "y": 7300, "bridges":["V","ST1"], "connects":["ST1","N","V"]},
+        
+        {"id": "V", "x": 2600, "y": 7300, "bridges":[], "connects":["U"]},
+        
+        {"id": "X", "x": 4325, "y": 7300, "bridges":["Y"], "connects":["Y"]},
+        
+        {"id": "Y", "x": 6925, "y": 7300, "bridges":["Z"], "connects":["Z","X","Q"]},
+        
+        {"id": "ST1", "x": 0, "y": 9425, "bridges":["Z"], "connects":["U","Z"]},
+        
+        {"id": "Z", "x": 6925, "y": 9425, "bridges":["W"], "connects":["ST1","Y","W"]},
+        
+        {"id": "W", "x": 9350, "y": 9425, "bridges":["AA","AD"], "connects":["Z","AA","AD"]},
+        
+        {"id": "AA", "x": 10850, "y": 9425, "bridges":["AB","AE"], "connects":["W","AB","AE"]},
+        
+        {"id": "AB", "x": 12350, "y": 9425, "bridges":["AC","AF"], "connects":["AA","AC","AF"]},
+        
+        {"id": "AC", "x": 13850, "y": 9425, "bridges":["AG"], "connects":["AB","AG","T"]},
+        
+        {"id": "AD", "x": 9350, "y": 11600, "bridges":[], "connects":["W"]},
+        
+        {"id": "AE", "x": 10850, "y": 11600, "bridges":[], "connects":["AA"]},
+        
+        {"id": "AF", "x": 12350, "y": 11600, "bridges":[], "connects":["AB"]},
+        
+        {"id": "AG", "x": 13850, "y": 11600, "bridges":[], "connects":["AC"]}
+    ]
+}

@@ -1,0 +1,156 @@
+<!-- /public/simulador1/content-->
+
+<!-- Mapa -->
+<div class="w-1/2 h-full bg-gray-100 dark:bg-gray-900 overflow-auto border-r border-gray-300 dark:border-gray-700">
+    <div id="mapa"
+        class="w-full h-full border border-gray-400 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800">
+    </div>
+</div>
+
+<!-- Painel direito -->
+<div class="flex flex-col w-1/2 h-full border-l border-gray-300 dark:border-gray-700">
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <button id="tabControles"
+            class="tab-inner flex-1 px-4 py-2 font-semibold border-b-4 text-blue-700 dark:text-blue-400 border-blue-600"
+            aria-selected="true">Configuraçoes</button>
+        <button id="tabLogs"
+            class="tab-inner flex-1 px-4 py-2 font-semibold border-b-4 border-transparent text-gray-600 dark:text-gray-400"
+            aria-selected="false">Logs Output</button>
+    </div>
+
+    <!-- Controls -->
+    <div id="panelControles" class="h-full p-4 flex flex-col overflow-y-auto max-h-full space-y-6">
+        <div class="mb-4">
+            <label for="selecionarRobo" class="block font-semibold mb-1">Selecionar Robô:</label>
+            <select id="selecionarRobo"
+                class="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 bg-white dark:bg-gray-900 text-gray-900">
+                <option value="robo1">Robô 1</option>
+                <option value="robo2">Robô 2</option>
+                <option value="ambos">Ambos</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="velocidade" class="block font-semibold mb-1">Velocidade:</label>
+            <input id="velocidade" type="range" min="1" max="5" value="2.5" class="w-full" />
+        </div>
+        <!-- Card: Comando de Destino -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-xl font-semibold mb-4">Destino dos Robôs</h2>
+
+            <div class="mb-4">
+                <label for="inputDestino" class="block font-semibold mb-1">Destino:</label>
+                <input id="inputDestino" type="text" placeholder="Ex: A, B, Z" class="w-full rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2
+         bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+
+                <p id="msgErroDestino" class="text-red-600 mt-1 hidden">Destino inválido!</p>
+            </div>
+
+            <button id="executarDestino"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Executar
+                Destino</button>
+        </div>
+
+        <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg p-4 border border-gray-300 dark:border-gray-600">
+            <h2 class="text-xl font-semibold mb-4">Percursos dos Robôs</h2>
+
+            <div class="flex flex-row gap-6 mb-4">
+                <div class="flex-1">
+                    <h3 class="font-semibold mb-2 text-red-600 dark:text-red-400">🤖 Robô 1</h3>
+                    <label class="text-sm mb-1 block">Nó inicial (posição do robô):</label>
+                    <select id="noInicialRobo1" disabled class="w-full mb-2 rounded border border-gray-300 dark:border-gray-600 px-2 py-1 appearance-none
+         bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"></select>
+
+                    <div id="percursoContainerRobo1"
+                        class="mb-2 min-h-[80px] border border-gray-200 dark:border-gray-700 rounded p-2 bg-gray-50 dark:bg-gray-800 text-gray-900">
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <h3 class="font-semibold mb-2 text-blue-600 dark:text-blue-400">🤖 Robô 2</h3>
+                    <label class="text-sm mb-1 block">Nó inicial (posição do robô):</label>
+                    <select id="noInicialRobo2" disabled class="w-full mb-2 rounded border border-gray-300 dark:border-gray-600 px-2 py-1 appearance-none
+         bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"></select>
+
+                    <div id="percursoContainerRobo2"
+                        class="mb-2 min-h-[80px] border border-gray-200 dark:border-gray-700 rounded p-2 bg-gray-50 dark:bg-gray-800 text-gray-900">
+                    </div>
+                </div>
+            </div>
+
+            <button id="finalizarPercurso"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mb-4">Finalizar
+                Percurso</button>
+
+            <div class="flex justify-between gap-2">
+                <button id="downloadPercurso"
+                    class="w-1/2 bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded">
+                    📥 Download Percurso
+                </button>
+                <label for="uploadPercurso"
+                    class="w-1/2 bg-gray-500 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded text-center cursor-pointer">
+                    📤 Upload Percurso
+                    <input id="uploadPercurso" type="file" accept=".json" class="hidden">
+                </label>
+            </div>
+
+            
+                <button id="guardarPercursoDB"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mb-4">Guardar
+                Percurso</button>
+            
+        </div>
+    </div>
+
+    <!-- Logs -->
+    <div id="panelLogs" class="hidden w-full h-full p-4 overflow-y-auto bg-gray-100 dark:bg-gray-900 space-y-6">
+
+        <!-- Estado dos Robôs -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 border border-gray-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold mb-4"> Estado Atual dos Robôs</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Robô 1 -->
+                <div class="bg-red-50 dark:bg-red-900 rounded-lg p-4 border border-red-300 dark:border-red-700">
+                    <h4 class="font-bold text-red-600 dark:text-red-400 mb-2">🤖 Robô 1</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li><span class="font-semibold">Distância:</span> <span id="distancia1">0</span>
+                            m</li>
+                        <li><span class="font-semibold">Estado:</span> <span id="estado1">Parado</span>
+                        </li>
+                        <li><span class="font-semibold">Posição:</span> <span id="posicao1">(0,
+                                0)</span></li>
+                        <li><span class="font-semibold">Direção:</span> <span id="direcao1">0°</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Robô 2 -->
+                <div class="bg-blue-50 dark:bg-blue-900 rounded-lg p-4 border border-blue-300 dark:border-blue-700">
+                    <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">🤖 Robô 2</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li><span class="font-semibold">Distância:</span> <span id="distancia2">0</span>
+                            m</li>
+                        <li><span class="font-semibold">Estado:</span> <span id="estado2">Parado</span>
+                        </li>
+                        <li><span class="font-semibold">Posição:</span> <span id="posicao2">(0,
+                                0)</span></li>
+                        <li><span class="font-semibold">Direção:</span> <span id="direcao2">0°</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área de Logs -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-inner p-4 border border-gray-300 dark:border-gray-600 h-[60vh] overflow-y-auto">
+            <h3 class="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-300"> Logs de Execução
+            </h3>
+            <div id="logOutput" class="scroll-smooth font-mono text-sm text-gray-800 dark:text-gray-100 space-y-1">
+                <!-- Linhas de log aparecerão aqui -->
+            </div>
+        </div>
+    </div>
+</div>
