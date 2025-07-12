@@ -210,6 +210,22 @@ window.configurarUploadDownload = function () {
   });
 };
 
+window.configurarVelocidade = function () {
+  const velElem = document.getElementById('velocidade');
+  if (velElem) {
+    velElem.addEventListener('input', function (e) {
+      const minSpeed = 1;
+      const maxSpeed = 10;
+      const sliderVal = parseInt(e.target.value);
+      const novaVel = minSpeed + (sliderVal - 1) * (maxSpeed - minSpeed) / 9;
+      window.roboA.speed = novaVel;
+      window.roboAC.speed = novaVel;
+    });
+    velElem.dispatchEvent(new Event('input')); // Aplica a velocidade inicial
+  }
+
+};
+
 // Expor log também (opcional)
 window.adicionarLog = adicionarLog;
 
@@ -242,17 +258,17 @@ document.getElementById('simulador1').addEventListener('click', (event) => {
         dados: percurso
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        alert("Erro: " + data.error);
-      } else {
-        alert("Percurso guardado com sucesso!");
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Erro ao guardar percurso");
-    });
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          alert("Erro: " + data.error);
+        } else {
+          alert("Percurso guardado com sucesso!");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Erro ao guardar percurso");
+      });
   }
 });

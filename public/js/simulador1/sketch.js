@@ -21,7 +21,7 @@ window.initSimulador1 = async function () {
     const percursoEscolhido = {
         robo1: [],
         robo2: []
-    };  
+    };
     window.percursoEscolhido = percursoEscolhido;
 
     // 3) Cria o sketch P5
@@ -53,14 +53,19 @@ window.initSimulador1 = async function () {
             // criar robôs
             roboA = new Robot('A', 10, 'red', mapa, p, escala, offsetX, offsetY, dadosJSON);
             roboAC = new Robot('AC', 10, 'blue', mapa, p, escala, offsetX, offsetY, dadosJSON);
+            window.roboA = roboA;
+            window.roboAC = roboAC;
+
             roboA.reset();
             roboAC.reset();
+
+            window.configurarVelocidade();
 
             // criar interface de percurso
             window.criarInterfacePercurso(roboA, roboAC, 'selecionarRobo', 'finalizarPercurso');
             window.configurarUploadDownload();
 
-            
+
             if (window.setupControlesSimulador1) {
                 window.setupControlesSimulador1(mapa, roboA, roboAC, percursoEscolhido, window.adicionarLog);
             }

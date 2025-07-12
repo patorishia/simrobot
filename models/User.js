@@ -1,4 +1,3 @@
-//models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -7,22 +6,8 @@ const userSchema = new mongoose.Schema({
   passwordHash: { type: String, required: true }
 });
 
-// Campo virtual só para input
-userSchema.virtual('password')
-  .set(function(password) {
-    this._password = password;
-  })
-  .get(function() {
-    return this._password;
-  });
-
-// Pre-save
-userSchema.pre('save', async function(next) {
-  if (this._password) {
-    this.passwordHash = await bcrypt.hash(this._password, 10);
-  }
-  next();
-});
-
+userSchema.methods.isValidPassword = async function(password) {
+  return await bcrypt.compare(password, this.passwordHash);
+};
 
 module.exports = mongoose.model('User', userSchema);

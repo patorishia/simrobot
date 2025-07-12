@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
+            console.log('Recebi login:', username);
+
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('username', data.username);
                 alert('Login efetuado com sucesso!');
-                window.location.href = '/index.html'; // página principal após login
+                window.location.href = '/index.html'; // ou qualquer página principal
             } else {
                 alert('Erro no login: ' + (data.error || 'Credenciais inválidas.'));
             }
@@ -35,6 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
 
 

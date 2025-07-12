@@ -22,39 +22,58 @@
     <h1 class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 select-none">
       ECGM - Robots at Factory Lite
     </h1>
-    <div class="absolute top-4 right-4 flex items-center gap-2">
+    <div class="flex items-center gap-2">
+      <!-- Instruções -->
       <button id="btnInstrucoes"
-        class="ml-4 bg-yellow-100 dark:bg-yellow-700 hover:bg-yellow-200 dark:hover:bg-yellow-600 text-yellow-800 dark:text-white font-semibold rounded-lg px-4 py-2 transition">
+        class="border border-blue-600 text-blue-600 dark:text-blue-400 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900 font-semibold rounded-md px-4 py-2 min-w-[100px] text-sm">
         ℹ️ Instruções
       </button>
+
+      <!-- Tema -->
       <button id="themeToggle"
-        class="flex items-center gap-2 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-700 dark:text-gray-300 font-semibold rounded-lg px-4 py-2 transition"
+        class="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:brightness-110 font-semibold rounded-md px-4 py-2 min-w-[110px] text-sm flex items-center gap-2"
         aria-label="Mudar tema">
-        <span id="themeIcon" class="text-xl">☀️</span>
+        <span id="themeIcon">☀️</span>
         <span id="themeText">Modo Claro</span>
       </button>
-      <button id="avatarBtn"
-        class="flex items-center gap-2 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-700 dark:text-gray-300 font-semibold rounded-lg px-4 py-2 transition focus:outline-none">
-        <svg class="w-6 h-6 rounded-full bg-blue-500 text-white p-1" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.3 0-9.6 1.7-9.6 5v2.4h19.2v-2.4c0-3.3-6.3-5-9.6-5z" />
-        </svg>
-        <span id="usernameDisplay">Utilizador</span>
-        <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
 
-      <!-- Dropdown -->
-      <div id="profileDropdown"
-        class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
-        <button id="openProfileBtn"
-          class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-gray-700">Perfil</button>
-        <button id="logoutBtn"
-          class="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-700">Sair</button>
-      </div>
+      <!-- Login -->
+      <a href="/login.html"
+        class="border border-blue-600 text-blue-600 dark:text-blue-400 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900 font-semibold rounded-md px-4 py-2 min-w-[90px] text-sm text-center">
+        Login
+      </a>
+
+      <!-- Registar -->
+      <a href="/register.html"
+        class="bg-blue-600 text-white hover:bg-blue-700 font-semibold rounded-md px-4 py-2 min-w-[90px] text-sm text-center">
+        Registar
+      </a>
     </div>
+
+    <!-- Botão avatar -->
+    <button id="avatarBtn"
+      class="hidden items-center gap-2 bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-700 dark:text-gray-300 font-semibold rounded-lg px-4 py-2 transition focus:outline-none">
+      <svg class="w-6 h-6 rounded-full bg-blue-500 text-white p-1" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.3 0-9.6 1.7-9.6 5v2.4h19.2v-2.4c0-3.3-6.3-5-9.6-5z" />
+      </svg>
+      <span id="usernameDisplay"></span>
+      <svg class="w-4 h-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <!-- Dropdown -->
+    <div id="profileDropdown"
+      class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
+      <button id="openProfileBtn"
+        class="block w-full text-left px-4 py-2 hover:bg-blue-100 dark:hover:bg-gray-700">Perfil</button>
+      <button id="logoutBtn"
+        class="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-700">Sair</button>
+    </div>
+    </div>
+
 
     <!-- Modal Perfil -->
     <div id="profileModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center z-50">
@@ -178,12 +197,12 @@
   <!-- Simulador 1 -->
   <script src="/js/simulador1/controls.js" defer></script>
   <script src="/js/simulador1/sketch.js" defer></script>
-   <!-- Simulador 2 -->
-  <script src="/js/simulador2/blockly_comps.js"defer></script>
-  <script src="/js/simulador2/blockly_logic.js"defer></script>
-  <script src="/js/simulador2/Caixa.js"defer></script>
-  <script src="/js/simulador2/PrototipoP5.js"defer></script>
-   <!-- App principal -->
+  <!-- Simulador 2 -->
+  <script src="/js/simulador2/blockly_comps.js" defer></script>
+  <script src="/js/simulador2/blockly_logic.js" defer></script>
+  <script src="/js/simulador2/Caixa.js" defer></script>
+  <script src="/js/simulador2/PrototipoP5.js" defer></script>
+  <!-- App principal -->
   <script src="/js/main.js" defer></script>
 
 </body>
