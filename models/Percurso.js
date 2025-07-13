@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const percursoSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  userId: { type: String, required: true },
   nome: { type: String, required: true },
-  dataCriacao: { type: Date, default: Date.now },
-  dados: { type: Object, required: true } 
-});
+  dados: { type: Object, required: true },
+  distanciaPercorrida: { type: Number, default: 0 },
+}, { timestamps: true });
 
 module.exports = mongoose.model('Percurso', percursoSchema);

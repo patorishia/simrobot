@@ -21,7 +21,7 @@ function authMiddleware(req, res, next) {
   }
 }
 
-// Obter percursos do utilizador
+// Rota para listar todos os percursos (sem conflito)
 router.get('/', authMiddleware, async (req, res) => {
   try {
     const percursos = await Percurso.find({ userId: req.user.id });
@@ -30,6 +30,19 @@ router.get('/', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Erro ao obter percursos' });
   }
 });
+
+// Rota para obter percurso específico (detalhes)
+router.get('/detalhes/:id', authMiddleware, async (req, res) => {
+  console.log('Rota detalhes chamada para ID:', req.params.id);
+  try {
+    const percurso = await Percurso.findOne({ _id: req.params.id, userId: req.user.id });
+    if (!percurso) return res.status(404).json({ error: 'Percurso não encontrado' });
+    res.json(percurso);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao obter percurso' });
+  }
+});
+
 
 // Criar novo percurso
 router.post('/', authMiddleware, async (req, res) => {
@@ -55,5 +68,29 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Erro ao apagar percurso' });
   }
 });
+
+// Atualizar distância percorrida
+router.patch('/:id/distancia', authMiddleware, async (req, res) => {
+  const { distanciaPercorrida } = req.body;
+
+  if (typeof distanciaPercorrida !== 'number') {
+    return res.status(400).json({ error: 'distanciaPercorrida inválida' });
+  }
+
+  try {
+    const percurso = await Percurso.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.id },
+      { distanciaPercorrida },
+      { new: true }
+    );
+
+    if (!percurso) return res.status(404).json({ error: 'Percurso não encontrado' });
+
+    res.json(percurso);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao atualizar distância' });
+  }
+});
+
 
 module.exports = router;

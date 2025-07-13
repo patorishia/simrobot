@@ -8,9 +8,17 @@ const connectDB = require('./db/connections');
 const authRoutes = require('./routes/auth');
 const percursosRoutes = require('./routes/percursos');
 const setupStaticRoutes = require('./routes/staticRoutes');
+const userRoutes = require('./routes/user');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use((req, res, next) => {
+  console.log(`Pedido: ${req.method} ${req.url}`);
+  next();
+});
+
 
 app.use(cors());
 app.use(express.json());
@@ -29,6 +37,9 @@ setupStaticRoutes(app);
 // 3) API
 app.use('/api/auth', authRoutes);
 app.use('/api/percursos', percursosRoutes);
+console.log('Registando rotas user...');
+app.use('/api/user', userRoutes);
+
 
 // 4) Base de dados e arranque
 connectDB()
