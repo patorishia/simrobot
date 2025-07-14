@@ -33,8 +33,12 @@ class Robot {
                 const dy = this.coordinates[neighbor].y - this.coordinates[id].y;
                 const distance = Math.hypot(dx, dy);
                 this.graph[id][neighbor] = distance;
+                this.graph[neighbor][id] = distance;
+
+                console.log(`${id} → ${neighbor}: dx=${dx}, dy=${dy}, distance=${distance}`);
             }
         }
+
 
         this.allShortestPaths = {};
         for (const node in this.graph) {
@@ -46,24 +50,29 @@ class Robot {
     }
 
     update() {
-        if (this.path != null && this.currIndex < this.path.length - 1) {
+        if (this.path && this.currIndex < this.path.length - 1) {
             this.estadoAtual = "mover";
             let dir = this.p5VectorSub(this.target, this.pos);
             let distToTarget = dir.mag();
 
-            console.log(`Atual: ${this.pos.x.toFixed(2)},${this.pos.y.toFixed(2)} | Target: ${this.target.x.toFixed(2)},${this.target.y.toFixed(2)} | Dist: ${distToTarget.toFixed(2)} | CurrIdx: ${this.currIndex}`);
-
             if (distToTarget < this.speed) {
                 this.pos = this.target.copy();
-                this.distanciaPercorrida += p5.Vector.dist(this.lastPos, this.pos)
-
+                if (this.currIndex < this.path.length - 1) {
+                    let from = this.path[this.currIndex];
+                    let to = this.path[this.currIndex + 1];
+                    this.distanciaPercorrida += this.graph[from][to];
+                }
                 this.lastPos = this.pos.copy();
 
                 this.currIndex++;
                 adicionarLog(`${this.color === 'red' ? 'Robô 1' : 'Robô 2'} chegou ao nó ${this.path[this.currIndex]}`);
+
                 if (this.currIndex < this.path.length - 1) {
-                    let next = mapa[this.path[this.currIndex + 1]];
-                    this.target = this.p.createVector(next.x * this.escala + this.offsetX, next.y * this.escala + this.offsetY);
+                    let next = this.mapa[this.path[this.currIndex + 1]];
+                    this.target = this.p.createVector(
+                        next.x * this.escala + this.offsetX,
+                        next.y * this.escala + this.offsetY
+                    );
                     this.start = this.path[this.currIndex];
                 } else {
                     this.start = this.path[this.currIndex];
@@ -75,10 +84,9 @@ class Robot {
             } else {
                 dir.setMag(this.speed);
                 this.pos.add(dir);
-                this.distanciaPercorrida += p5.Vector.dist(this.lastPos, this.pos)
-
                 this.lastPos = this.pos.copy();
             }
+
 
             if (dir.mag() > 0) {
                 this.direction = this.p.degrees(dir.heading());
@@ -87,6 +95,7 @@ class Robot {
             this.estadoAtual = "parado";
         }
 
+        // Desenhar robô
         this.p.push();
         this.p.translate(this.pos.x, this.pos.y);
         this.p.rotate(this.p.radians(this.direction));
@@ -96,35 +105,17 @@ class Robot {
         this.p.line(0, 0, 10, 0);
         this.p.pop();
 
-        // Trecho que usa percurso - também corrigido para usar this.p
-        if (this.percurso && this.indexPercurso < this.percurso.length - 1) {
-            this.estadoAtual = "mover";
-            let dir = this.p5VectorSub(this.target, this.pos);
-            let distToTarget = dir.mag();
-
-            if (distToTarget < this.speed) {
-                this.pos = this.target.copy();
-                this.indexPercurso++;
-                this.start = this.percurso[this.indexPercurso];
-
-                if (this.indexPercurso < this.percurso.length - 1) {
-                    this.setDestino(this.percurso[this.indexPercurso + 1]);
-                } else {
-                    this.estadoAtual = "parado";
-                    this.percurso = null;
-                }
-            } else {
-                dir.setMag(this.speed);
-                this.pos.add(dir);
-            }
-
-            if (dir.mag() > 0) {
-                this.direction = this.p.degrees(dir.heading());
-            }
-        } else {
-            this.estadoAtual = "parado";
+        if (this.color === "red") {
+            window.distanciaRobo1 = this.distanciaPercorrida;
+        } else if (this.color === "blue") {
+            window.distanciaRobo2 = this.distanciaPercorrida;
         }
+
+
+
+
     }
+
 
     dijkstra(startNode) {
         const distances = {};
@@ -243,6 +234,12 @@ class Robot {
                 let dir = this.p5VectorSub(target, this.pos);
                 if (dir.mag() < this.speed) {
                     this.pos = target.copy();
+                    if (this.currIndex < this.path.length - 1) {
+                        let from = this.path[this.currIndex];
+                        let to = this.path[this.currIndex + 1];
+                        this.distanciaPercorrida += this.graph[from][to];
+                    }
+                    this.lastPos = this.pos.copy();
                     this.start = chosenNeighbor;
                     this.currIndex = 0;
                     this.path = null;
@@ -300,6 +297,13 @@ class Robot {
                 let dir = this.p5VectorSub(target, this.pos);
                 if (dir.mag() < this.speed) {
                     this.pos = target.copy();
+                    if (this.currIndex < this.path.length - 1) {
+                        let from = this.path[this.currIndex];
+                        let to = this.path[this.currIndex + 1];
+                        this.distanciaPercorrida += this.graph[from][to];
+                    }
+                    this.lastPos = this.pos.copy();
+
                     resolve();
                     return;
                 }

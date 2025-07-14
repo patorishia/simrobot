@@ -46,11 +46,20 @@ router.get('/detalhes/:id', authMiddleware, async (req, res) => {
 
 // Criar novo percurso
 router.post('/', authMiddleware, async (req, res) => {
-  const { nome, dados } = req.body;
+  const { nome, dados, distanciasPercorridas } = req.body;
   if (!nome || !dados) return res.status(400).json({ error: 'Campos obrigatórios' });
 
+  if (!dados.robo1 && !dados.robo2) {
+    return res.status(400).json({ error: 'Percurso inválido: precisa ter pelo menos um robo' });
+  }
+
   try {
-    const novoPercurso = new Percurso({ userId: req.user.id, nome, dados });
+    const novoPercurso = new Percurso({
+      userId: req.user.id,
+      nome,
+      dados,
+      distanciasPercorridas
+    });
     await novoPercurso.save();
     res.status(201).json(novoPercurso);
   } catch (err) {
@@ -70,17 +79,22 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 });
 
 // Atualizar distância percorrida
+// Atualizar distância percorrida (corrigido para os dois robôs)
 router.patch('/:id/distancia', authMiddleware, async (req, res) => {
-  const { distanciaPercorrida } = req.body;
+  const { robo1, robo2 } = req.body;
 
-  if (typeof distanciaPercorrida !== 'number') {
-    return res.status(400).json({ error: 'distanciaPercorrida inválida' });
+  const update = {};
+  if (typeof robo1 === 'number') update['distanciasPercorridas.robo1'] = robo1;
+  if (typeof robo2 === 'number') update['distanciasPercorridas.robo2'] = robo2;
+
+  if (Object.keys(update).length === 0) {
+    return res.status(400).json({ error: 'Nenhuma distância válida fornecida' });
   }
 
   try {
     const percurso = await Percurso.findOneAndUpdate(
       { _id: req.params.id, userId: req.user.id },
-      { distanciaPercorrida },
+      { $set: update },
       { new: true }
     );
 

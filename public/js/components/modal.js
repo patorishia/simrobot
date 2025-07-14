@@ -59,6 +59,9 @@ function setupProfileModal() {
   const percursosList = document.getElementById('percursosList');
   const percursoContent = document.getElementById('percursoContent');
   const viewerWrapper = document.getElementById('viewerWrapper');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+
 
   if (!avatarBtn) return;
 
@@ -72,6 +75,15 @@ function setupProfileModal() {
     }
   });
 
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('token');
+      window.location.href = '/login'; // ou outra página que queiras
+    });
+  }
+
+  
   openProfileBtn.addEventListener('click', () => {
     profileDropdown.classList.add('hidden');
     profileModal.classList.remove('hidden');
@@ -109,7 +121,7 @@ function setupProfileModal() {
 
           const deleteBtn = document.createElement('button');
           deleteBtn.textContent = '🗑️';
-          deleteBtn.title = 'Apagar';  
+          deleteBtn.title = 'Apagar';
           deleteBtn.className = 'text-red-500 hover:text-red-700';
           deleteBtn.addEventListener('click', (e) => {
             e.stopPropagation();

@@ -115,20 +115,41 @@ window.configurarUploadDownload = function () {
   const mapa = window.mapa;
 
   document.getElementById('downloadPercurso').addEventListener('click', () => {
-    if ((!percursoEscolhido.robo1.length || percursoEscolhido.robo1.length < 2) &&
-      (!percursoEscolhido.robo2.length || percursoEscolhido.robo2.length < 2)) {
+    const percurso = window.percursoEscolhido;
+    const nome = window.percursoNome || "Percurso";
+    const userName = window.userName || "Desconhecido";
+    const distanciasPercorridas = {
+      robo1: window.roboA?.distanciaPercorrida || 0,
+      robo2: window.roboAC?.distanciaPercorrida || 0
+    };
+
+    if ((!percurso.robo1 || percurso.robo1.length < 2) &&
+      (!percurso.robo2 || percurso.robo2.length < 2)) {
       alert("Defina pelo menos um percurso antes de fazer download.");
       return;
     }
 
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(percursoEscolhido, null, 2));
+    const ficheiro = {
+      nome,
+      userName,
+      distanciasPercorridas,
+      dados: {
+        robo1: percurso.robo1,
+        robo2: percurso.robo2
+      }
+    };
+
+
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ficheiro, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "percursoEscolhido.json");
+    downloadAnchor.setAttribute("download", `${nome}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
   });
+
 
   document.getElementById('uploadPercurso').addEventListener('change', (event) => {
     const file = event.target.files[0];
@@ -138,14 +159,54 @@ window.configurarUploadDownload = function () {
     reader.onload = e => {
       try {
         const dados = JSON.parse(e.target.result);
+        let robo1 = dados.robo1;
+        let robo2 = dados.robo2;
 
-        if (!dados.robo1 || !dados.robo2) {
+        if (!robo1 || !robo2) {
+          if (dados.dados) {
+            robo1 = dados.dados.robo1;
+            robo2 = dados.dados.robo2;
+          }
+        }
+
+
+        if (!robo1 || !robo2) {
           alert("Arquivo JSON inválido.");
           return;
         }
 
-        percursoEscolhido.robo1 = dados.robo1;
-        percursoEscolhido.robo2 = dados.robo2;
+        if (!Array.isArray(robo1) || !Array.isArray(robo2)) {
+          alert("Formato inválido.");
+          return;
+        }
+
+
+        percursoEscolhido.robo1 = robo1;
+        percursoEscolhido.robo2 = robo2;
+
+        if (window.roboA && percursoEscolhido.robo1.length > 0) {
+          window.roboA.start = percursoEscolhido.robo1[0];
+        }
+
+        if (window.roboAC && percursoEscolhido.robo2.length > 0) {
+          window.roboAC.start = percursoEscolhido.robo2[0];
+        }
+
+
+
+
+        window.percursoNome = dados.nome || "Percurso";
+
+
+        window.distanciaRobo1 = dados.distanciasPercorridas?.robo1 || 0;
+        window.distanciaRobo2 = dados.distanciasPercorridas?.robo2 || 0;
+
+        if (window.roboA) window.roboA.distanciaPercorrida = window.distanciaRobo1;
+        if (window.roboAC) window.roboAC.distanciaPercorrida = window.distanciaRobo2;
+
+
+
+
 
         function atualizarDropdowns(roboKey, percursoContainerId) {
           const percursoContainer = document.getElementById(percursoContainerId);
@@ -235,6 +296,8 @@ document.getElementById('simulador1').addEventListener('click', (event) => {
   if (event.target && event.target.id === 'guardarPercursoDB') {
     const percurso = window.percursoEscolhido;
     const nome = prompt("Nome do percurso:", "Percurso 1");
+    window.percursoNome = nome;
+
 
     if (!nome) {
       alert("Precisa dar um nome ao percurso!");
@@ -255,7 +318,11 @@ document.getElementById('simulador1').addEventListener('click', (event) => {
       },
       body: JSON.stringify({
         nome,
-        dados: percurso
+        dados: percurso,
+        distanciasPercorridas: {
+          robo1: window.roboA?.distanciaPercorrida || 0,
+          robo2: window.roboAC?.distanciaPercorrida || 0
+        }
       })
     })
       .then(res => res.json())
@@ -272,3 +339,23 @@ document.getElementById('simulador1').addEventListener('click', (event) => {
       });
   }
 });
+
+
+const token = localStorage.getItem('token');
+
+if (token) {
+  fetch('/api/user/me', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(user => {
+      window.userName = user.username || "Desconhecido";
+      console.log("Utilizador autenticado:", window.userName);
+    })
+    .catch(err => {
+      console.error("Erro ao buscar utilizador:", err);
+    });
+}
+

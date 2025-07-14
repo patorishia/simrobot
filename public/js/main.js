@@ -13,30 +13,47 @@ window.addEventListener('DOMContentLoaded', async () => {
   const avatarBtn = document.getElementById('avatarBtn');
   const usernameDisplay = document.getElementById('usernameDisplay');
 
-  if (token) {
-    console.log('Token encontrado:', token);
+   if (token) {
+    try {
+      const res = await fetch('/api/user/me', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
 
-    // Esconde Login/Registar
-    if (loginBtn) loginBtn.classList.add('hidden');
-    if (registerBtn) registerBtn.classList.add('hidden');
+      const data = await res.json();
 
-    // Mostra avatar
-    if (avatarBtn) avatarBtn.classList.remove('hidden');
+      if (!res.ok) {
+        console.warn('Token inválido ou expirado:', data.error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
 
-    // Vai buscar nome
-    fetch('/api/user/me', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(res => res.json())
-      .then(user => {
-        console.log('User:', user);
-        if (usernameDisplay) usernameDisplay.textContent = user.username || user.name || 'Utilizador';
-      })
-      .catch(err => console.error('Erro ao buscar utilizador:', err));
+        // Mostra login/registar, esconde avatar
+        loginBtn.classList.remove('hidden');
+        registerBtn.classList.remove('hidden');
+        avatarBtn.classList.add('hidden');
+        return;
+      }
+
+      // Token válido: mostra avatar, esconde login/registar
+      usernameDisplay.textContent = data.username;
+      loginBtn.classList.add('hidden');
+      registerBtn.classList.add('hidden');
+      avatarBtn.classList.remove('hidden');
+
+    } catch (err) {
+      console.error('Erro ao verificar token:', err);
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      loginBtn.classList.remove('hidden');
+      registerBtn.classList.remove('hidden');
+      avatarBtn.classList.add('hidden');
+    }
+
   } else {
-    // Sem token = mostra Login/Registar
-    if (loginBtn) loginBtn.classList.remove('hidden');
-    if (registerBtn) registerBtn.classList.remove('hidden');
-    if (avatarBtn) avatarBtn.classList.add('hidden');
+    // Sem token: mostra login/registar
+    loginBtn.classList.remove('hidden');
+    registerBtn.classList.remove('hidden');
+    avatarBtn.classList.add('hidden');
   }
 });
