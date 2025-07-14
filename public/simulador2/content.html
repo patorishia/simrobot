@@ -1,71 +1,110 @@
-<div class="flex flex-col flex-1 overflow-hidden h-full">
-  <!-- Área principal: simulador + blockly lado a lado -->
-  <div class="flex flex-1 overflow-hidden gap-4">
+
+  <!-- Área principal: simulador + menu lado a lado -->
+  <div class="flex flex-1 gap-4 overflow-y-auto ">
     <!-- Simulador -->
-    <div id="mapa2" class="flex-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-hidden">
+    <div id="mapa2" class="flex-1 w-1/2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-y-auto ">
       <!-- p5.js cria o canvas aqui -->
     </div>
 
-    <!-- Blockly -->
-    <div class="flex-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-hidden">
-      <xml id="toolbox" style="display: none;">
+    <!-- Comandos principais -->
+    <div class="flex-1 w-1/2 flex-wrap items-center gap-4 overflow-y-auto ">
+      <label class="font-semibold">Controlos do Simulador:</label>
+      <br>
+      <!--Menu radio das provas-->
+      <label style="margin-left: 10px;">Prova Nº: </label>
+      <input type="radio" id="prova1" name="dificuldade" value="1">  
+      <label for="prova1">Prova 1</label> 
+      <input type="radio" id="prova2" name="dificuldade" value="2">
+      <label for="prova2">Prova 2</label>
+      <input type="radio" id="prova3" name="dificuldade" value="3"  checked="true">
+      <label for="prova3">Prova 3</label>
+      <br>
+
+      <button id="btnExecutar"
+        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition">
+        Executar Programa
+      </button>
+
+      <button id="btnReset"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded transition">
+        Recomeçar Simulador
+      </button>
+
+      <!-- Guardar/Carregar Robo 1-->
+      <div class="flex flex-wrap items-center gap-4 overflow-y-auto ">
+        <label class="font-semibold">Robo 1:</label>
+        <br>
+        <div class="flex items-center space-x-2">
+          <label for="nomeFile1" class="font-semibold">Salvar como:</label>
+          <input id="nomeFile1" type="text"
+            class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+          <button id="btnSalvar1"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded transition">
+            Salvar
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="inputJSON1" class="font-semibold">Carregar:</label>
+          <input id="inputJSON1" type="file" accept=".json"
+            class="text-sm text-gray-600 dark:text-gray-300" />
+          <button id="btnCarregar1"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition">
+            Carregar
+          </button>
+        </div>
+      </div>
+
+      <!-- Guardar/Carregar Robo 2-->
+      <div class="flex flex-wrap items-center gap-4">
+        <label class="font-semibold">Robo 2:</label>
+        <br>
+        <div class="flex items-center space-x-2">
+          <label for="nomeFile2" class="font-semibold">Salvar como:</label>
+          <input id="nomeFile2" type="text"
+            class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
+          <button id="btnSalvar2"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded transition">
+            Salvar
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <label for="inputJSON2" class="font-semibold">Carregar:</label>
+          <input id="inputJSON2" type="file" accept=".json"
+            class="text-sm text-gray-600 dark:text-gray-300" />
+          <button id="btnCarregar2"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition">
+            Carregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="flex flex-col flex-1 overflow-y-auto h-full">
+  <!-- Área dos Blocklys dos robos -->
+  <div class="flex flex-1 overflow-y-auto gap-4">
+    <!-- Blockly Robo 1-->
+    <div class="flex-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-y-auto">
+      <xml id="toolbox1" style="display: none;">
         <block type="navigation_block_simple"></block>
         <block type="navigation_block_actionable"></block>
         <block type="action_block"></block>
+        <block type="duration_block"></block>
       </xml>
-      <div id="blocklyDiv" style="width: 100%; height: 100%;" class="w-full h-full"></div>
+      <div id="blocklyDiv1" style="width: 100%; height: 100%;" class="w-full h-full"></div>
+    </div>
+
+    <!-- Blockly Robo 2-->
+    <div class="flex-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 overflow-y-auto">
+      <xml id="toolbox2" style="display: none;">
+        <block type="navigation_block_simple"></block>
+        <block type="navigation_block_actionable"></block>
+        <block type="action_block"></block>
+        <block type="duration_block"></block>
+      </xml>
+      <div id="blocklyDiv2" style="width: 100%; height: 100%;" class="w-full h-full"></div>
     </div>
   </div>
-
-  <!-- Comandos e Guardar/Carregar alinhados -->
-<div class="flex justify-between flex-wrap items-center gap-4 p-4 border-t border-gray-200 dark:border-gray-700 w-full">
-  
-  <!-- Comandos principais -->
-  <div class="flex flex-wrap items-center gap-4">
-    <div class="flex items-center space-x-2">
-      <label for="velocidade" class="font-semibold">Velocidade:</label>
-      <input type="number" id="velocidade" value="1" min="1" max="10"
-        class="w-20 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
-    </div>
-
-    <div class="flex items-center space-x-2">
-      <label for="numRobos" class="font-semibold">Robôs:</label>
-      <input type="number" id="numRobos" value="1" min="1" max="5"
-        class="w-20 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
-    </div>
-
-    <button id="btnExecutar"
-      class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition">
-      Executar Programa
-    </button>
-
-    <button id="btnReset"
-      class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded transition">
-      Recomeçar Simulador
-    </button>
-  </div>
-
-  <!-- Guardar/Carregar -->
-  <div class="flex flex-wrap items-center gap-4">
-    <div class="flex items-center space-x-2">
-      <label for="nomeFile" class="font-semibold">Salvar como:</label>
-      <input id="nomeFile" type="text"
-        class="px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" />
-      <button id="btnSalvar"
-        class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded transition">
-        Salvar
-      </button>
-    </div>
-
-    <div class="flex items-center space-x-2">
-      <label for="inputJSON" class="font-semibold">Carregar:</label>
-      <input id="inputJSON" type="file" accept=".json"
-        class="text-sm text-gray-600 dark:text-gray-300" />
-      <button id="btnCarregar"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition">
-        Carregar
-      </button>
-    </div>
-  </div>
-
 </div>

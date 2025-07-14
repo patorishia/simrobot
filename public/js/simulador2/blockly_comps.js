@@ -1,3 +1,4 @@
+// public/js/simulador2/blockly_comps.js
 
 Blockly.defineBlocksWithJsonArray([
   // Blocos de navegação que têm ações dentro (ex: LINE, CROSS R, etc)
@@ -14,8 +15,7 @@ Blockly.defineBlocksWithJsonArray([
           ["CROSS L", "CROSS_L"],
           ["CROSS X", "CROSS_X"],
           ["PICK", "PICK"],
-          ["DROP DIST", "DROP_DIST"],
-          ["HALT", "HALT"]
+          ["DROP DIST", "DROP_DIST"]
         ]
       }
     ],
@@ -57,7 +57,7 @@ Blockly.defineBlocksWithJsonArray([
   // Blocos de ação do ACCAC
   {
     "type": "action_block",
-    "message0": "%1",
+    "message0": "%1 %2",
     "args0": [
       {
         "type": "field_dropdown",
@@ -68,21 +68,40 @@ Blockly.defineBlocksWithJsonArray([
           ["TURN L", "TURN_L"],
           ["TURN R", "TURN_R"],
           ["PICKUP BOX", "PICKUP_BOX"],
-          ["DROP BOX", "DROP_BOX"]
+          ["DROP BOX", "DROP_BOX"],
+          ["HALT", "HALT"],
+          ["TURBO", "TURBO"]
         ]
-      }/*,
+      },
       {
-        "type": "field_number",
-        "name": "DURATION",
-        "value": 1,
-        "min": 0,
-        "max": 10
-      }*/
+        "type": "input_value",
+        "name": "DURATION"
+      }
     ],
     "previousStatement": null,
     "nextStatement": null,
     "colour": 120,
     "tooltip": "Robot action",
+    "helpUrl": ""
+  },
+
+  //Bloco de duracao
+  {
+    "type": "duration_block",
+    "message0": "for %1 milliseconds",
+    "args0": [
+      {
+        "type": "field_number",
+        "name": "MILLISECONDS",
+        "value": 1,
+        "min": 0.1,
+        "max": 10000,
+        "precision": 0.1
+      }
+    ],
+    "output": "Number",
+    "colour": 60,
+    "tooltip": "Set duration in seconds",
     "helpUrl": ""
   }
 ]);

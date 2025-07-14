@@ -5,14 +5,18 @@ window.initSimulador2 = async function () {
   const html = await fetch('/simulador2/content.html').then(r => r.text());
   container.innerHTML = html;
 
-  initBlockly();
-  window.workspace = workspace;
+  /*initBlockly();
+  window.workspace = workspace;*/
 
   const dadosJSON = await fetch('/data/map.json').then(r => r.json());
   const mapa = {};
   dadosJSON.points.forEach(pt => mapa[pt.id] = pt);
   window.mapa = mapa;
   window.robo = null;
+  let dificuldade = 3;
+  let caixas = {};
+  let roboList = {};
+  let blocklyList = {};
 
   const wrapper = document.getElementById('mapa2');
   const w = wrapper.clientWidth;
@@ -37,7 +41,6 @@ window.initSimulador2 = async function () {
   const offsetY = -minY * escala + padding + (h - 2 * padding - mapaH * escala) / 2;
 
   new p5(sketch => {
-    const caixas = {};
 
     sketch.setup = () => {
       sketch.createCanvas(w, h).parent('mapa2');
@@ -45,18 +48,45 @@ window.initSimulador2 = async function () {
       sketch.canvas.style.width = '100%';
       sketch.canvas.style.height = '100%';
 
-      window.robo = new Robot("ST1", 30, "red", mapa, sketch, escala, offsetX, offsetY, dadosJSON);
+      sketch.comecarJogo();
       
-
-      caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
+      blocklyList[0] = new blockly_logic("nomeFile1");
+      blocklyList[0].initBlockly('toolbox1','blocklyDiv1',roboList[0]);
+      blocklyList[1] = new blockly_logic("nomeFile2");
+      blocklyList[1].initBlockly('toolbox2','blocklyDiv2',roboList[1]);
+      /*caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
       caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
       caixas[2] = new Caixa("vermelho", "C", sketch, escala, offsetX, offsetY);
-      caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
+      caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);*/
 
-      document.getElementById('btnExecutar')?.addEventListener('click', executarPrograma);
-      document.getElementById('btnReset')?.addEventListener('click', () => sketch.clear());
-      document.getElementById('btnguardar')?.addEventListener('click', guardarBlocos);
-      document.getElementById('btnCarregar')?.addEventListener('click', carregarBlocos);
+      document.getElementById('btnExecutar').addEventListener('click', () => {
+        for(var i=0; i<Object.keys(blocklyList).length; i++){
+          blocklyList[i].executarPrograma();
+        }
+      });
+      //botoes de salvar blockly
+      document.getElementById('btnSalvar1').addEventListener('click', () => {
+        blocklyList[0].salvarBlocos()
+      });
+      document.getElementById('btnSalvar2').addEventListener('click', () => {
+        blocklyList[1].salvarBlocos()
+      });
+      //botoes de carregar blockly
+      document.getElementById('btnCarregar1').addEventListener('click', () => {
+        blocklyList[0].carregarBlocos("inputJSON1")
+      });
+      document.getElementById('btnCarregar2').addEventListener('click', () => {
+        blocklyList[1].carregarBlocos("inputJSON2")
+      });
+      document.getElementById('btnReset').addEventListener('click', sketch.recomecarJogo());
+      document.querySelectorAll('input[name="dificuldade"]').forEach(radio =>{
+        radio.addEventListener('change', () => {
+          if(radio.checked==true){
+            dificuldade = radio.value;
+            sketch.recomecarJogo();
+          }
+        });
+      });
     };
 
     sketch.draw = () => {
@@ -82,9 +112,42 @@ window.initSimulador2 = async function () {
       });
 
       
-      window.robo.update();
+      //window.robo.update();
+      Object.values(roboList).forEach(r => r.update());
       Object.values(caixas).forEach(c => c.update());
     };
+
+    sketch.comecarJogo = () =>{
+      if(dificuldade==3){
+        //Caixas: 2 azuis, 1 verde e 1 vermelha
+        caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
+        caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
+        caixas[2] = new Caixa("vermelho", "C", sketch, escala, offsetX, offsetY);
+        caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
+      }else if(dificuldade==2){
+        //Caixas: 2 azuis e 2 verdes
+        caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
+        caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
+        caixas[2] = new Caixa("verde", "C", sketch, escala, offsetX, offsetY);
+        caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
+      }else{
+        //Caixas: 4 azuis
+        caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
+        caixas[1] = new Caixa("azul", "B", sketch, escala, offsetX, offsetY);
+        caixas[2] = new Caixa("azul", "C", sketch, escala, offsetX, offsetY);
+        caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
+      }
+
+      roboList[0] = new Robots("ST1","vermelho",0,sketch,escala, offsetX, offsetY,dadosJSON,caixas);
+      roboList[1] = new Robots("ST2","azul",180,sketch,escala, offsetX, offsetY,dadosJSON,caixas);
+    }
+
+    sketch.recomecarJogo = () => {
+      sketch.comecarJogo();
+
+      blocklyList[0].updateRobo(roboList[0]);
+      blocklyList[1].updateRobo(roboList[1]);
+    }
 
     window.fitBoxX = x => x * escala + offsetX;
     window.fitBoxY = y => y * escala + offsetY;
