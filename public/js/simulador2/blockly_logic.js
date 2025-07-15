@@ -193,7 +193,7 @@ async executeBlockRecursive(block) {
               while((checkFrente!==undefined && checkEsquerda===undefined && this.prevBlock!=null &&
                    this.prevBlock.getFieldValue('NAV_TYPE')=='LINE' && this.prevBlock.getInputTargetBlock('DO').getFieldValue('ACTION_TYPE')=='MOVE_F')
                    ||
-                   (checkFrente!==undefined && checkEsquerda!==undefined && checkDireita!==undefined &&  prevBlock!=null &&
+                   (checkFrente!==undefined && checkEsquerda!==undefined && checkDireita!==undefined &&  this.prevBlock!=null &&
                    this.prevBlock.getFieldValue('NAV_TYPE')=='LINE' && this.prevBlock.getInputTargetBlock('DO').getFieldValue('ACTION_TYPE')=='MOVE_F')){
                 console.log("cross L loop ping")
                 await this.actionBlockMethod(this.prevBlock.getInputTargetBlock('DO').getFieldValue('ACTION_TYPE'),duration,checkDireita,checkFrente,checkEsquerda,checkTras);
