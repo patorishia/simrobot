@@ -23,7 +23,7 @@ class Caixa {
     // posiciona no nó do mapa
     const pt = mapa[startPoint];
     this.pos = this.p.createVector(pt.x, pt.y);
-    this.direction = 90;
+    this.direction = 270;
     this.picked = false;
     if(this.cor == "vermelho"){
       this.processos = 2;
