@@ -8,6 +8,8 @@ window.initSimulador2 = async function () {
   /*initBlockly();
   window.workspace = workspace;*/
 
+  initTabs();
+
   const dadosJSON = await fetch('/data/map.json').then(r => r.json());
   const mapa = {};
   dadosJSON.points.forEach(pt => mapa[pt.id] = pt);
@@ -49,18 +51,18 @@ window.initSimulador2 = async function () {
       sketch.canvas.style.height = '100%';
 
       sketch.comecarJogo();
-      
+
       blocklyList[0] = new blockly_logic("nomeFile1");
-      blocklyList[0].initBlockly('toolbox1','blocklyDiv1',roboList[0]);
+      blocklyList[0].initBlockly('toolbox1', 'blocklyDiv1', roboList[0]);
       blocklyList[1] = new blockly_logic("nomeFile2");
-      blocklyList[1].initBlockly('toolbox2','blocklyDiv2',roboList[1]);
+      blocklyList[1].initBlockly('toolbox2', 'blocklyDiv2', roboList[1]);
       /*caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
       caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
       caixas[2] = new Caixa("vermelho", "C", sketch, escala, offsetX, offsetY);
       caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);*/
 
       document.getElementById('btnExecutar').addEventListener('click', () => {
-        for(var i=0; i<Object.keys(blocklyList).length; i++){
+        for (var i = 0; i < Object.keys(blocklyList).length; i++) {
           blocklyList[i].executarPrograma();
         }
       });
@@ -78,10 +80,11 @@ window.initSimulador2 = async function () {
       document.getElementById('btnCarregar2').addEventListener('click', () => {
         blocklyList[1].carregarBlocos("inputJSON2")
       });
-      document.getElementById('btnReset').addEventListener('click', sketch.recomecarJogo());
-      document.querySelectorAll('input[name="dificuldade"]').forEach(radio =>{
+      document.getElementById('btnReset').addEventListener('click', () => sketch.recomecarJogo());
+
+      document.querySelectorAll('input[name="dificuldade"]').forEach(radio => {
         radio.addEventListener('change', () => {
-          if(radio.checked==true){
+          if (radio.checked == true) {
             dificuldade = radio.value;
             sketch.recomecarJogo();
           }
@@ -111,26 +114,26 @@ window.initSimulador2 = async function () {
         sketch.text(pt.id, fitBoxX(pt.x), fitBoxY(pt.y) - 10);
       });
 
-      
+
       //window.robo.update();
       Object.values(roboList).forEach(r => r.update());
       Object.values(caixas).forEach(c => c.update());
     };
 
-    sketch.comecarJogo = () =>{
-      if(dificuldade==3){
+    sketch.comecarJogo = () => {
+      if (dificuldade == 3) {
         //Caixas: 2 azuis, 1 verde e 1 vermelha
         caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
         caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
         caixas[2] = new Caixa("vermelho", "C", sketch, escala, offsetX, offsetY);
         caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
-      }else if(dificuldade==2){
+      } else if (dificuldade == 2) {
         //Caixas: 2 azuis e 2 verdes
         caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
         caixas[1] = new Caixa("verde", "B", sketch, escala, offsetX, offsetY);
         caixas[2] = new Caixa("verde", "C", sketch, escala, offsetX, offsetY);
         caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
-      }else{
+      } else {
         //Caixas: 4 azuis
         caixas[0] = new Caixa("azul", "A", sketch, escala, offsetX, offsetY);
         caixas[1] = new Caixa("azul", "B", sketch, escala, offsetX, offsetY);
@@ -138,8 +141,10 @@ window.initSimulador2 = async function () {
         caixas[3] = new Caixa("azul", "D", sketch, escala, offsetX, offsetY);
       }
 
-      roboList[0] = new Robots("ST1","vermelho",0,sketch,escala, offsetX, offsetY,dadosJSON,caixas);
-      roboList[1] = new Robots("ST2","azul",180,sketch,escala, offsetX, offsetY,dadosJSON,caixas);
+      roboList[0] = new Robots("ST1", "vermelho", 0, sketch, escala, offsetX, offsetY, dadosJSON, caixas);
+      roboList[1] = new Robots("ST2", "azul", 180, sketch, escala, offsetX, offsetY, dadosJSON, caixas);
+
+
     }
 
     sketch.recomecarJogo = () => {
@@ -152,4 +157,32 @@ window.initSimulador2 = async function () {
     window.fitBoxX = x => x * escala + offsetX;
     window.fitBoxY = y => y * escala + offsetY;
   });
+
+
+  function initTabs() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    function activateTab(tab) {
+      tabs.forEach(t => {
+        t.classList.remove('border-blue-600', 'text-blue-600', 'dark:text-blue-500');
+        t.classList.add('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+      });
+      contents.forEach(c => c.classList.add('hidden'));
+
+      tab.classList.add('border-blue-600', 'text-blue-600', 'dark:text-blue-500');
+      tab.classList.remove('text-gray-600', 'dark:text-gray-400', 'border-transparent');
+
+      const tabId = tab.dataset.tab;
+      const activeContent = document.getElementById(tabId);
+      if (activeContent) activeContent.classList.remove('hidden');
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activateTab(tab));
+    });
+
+    if (tabs.length > 0) activateTab(tabs[0]);
+  }
+
 };

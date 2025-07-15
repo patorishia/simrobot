@@ -1,4 +1,8 @@
 ///public/js/components/tabs.js
+
+let workspace;
+
+
 function toggleTabs(groupSelector, selectedId, activeClasses, inactiveClasses) {
     document.querySelectorAll(groupSelector).forEach(btn => {
         if (btn.id === selectedId) {
@@ -35,8 +39,8 @@ function setupTabs() {
             sim2.classList.remove('hidden');
             if (!workspace) {
                 setTimeout(() => {
-                    workspace = Blockly.inject('blocklyDiv', {
-                        toolbox: document.getElementById('toolbox')
+                    workspace = Blockly.inject('blocklyDiv2', {
+                        toolbox: document.getElementById('toolbox2')
                     });
                 }, 0);
             } else {
@@ -88,4 +92,3 @@ function setupTabs() {
         });
     }
 }
-
