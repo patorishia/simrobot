@@ -106,7 +106,7 @@ class Caixa {
       console.log("Esta caixa ja esta processada");
     }
 
-    this.pos = createVector(mapa[this.start].x, mapa[this.start].y);
+    this.pos = this.p.createVector(mapa[this.start].x, mapa[this.start].y);
   }
 }
 
