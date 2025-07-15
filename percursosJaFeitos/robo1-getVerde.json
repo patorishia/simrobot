@@ -1,0 +1,407 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "navigation_block_actionable",
+        "id": "3ARyQKIoNzE~AhO#~y^-",
+        "x": -354,
+        "y": -318,
+        "fields": {
+          "NAV_TYPE": "CROSS_L"
+        },
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "action_block",
+              "id": "86$4d+,hD-,l!S|P+1]0",
+              "fields": {
+                "ACTION_TYPE": "TURN_L"
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "navigation_block_actionable",
+            "id": "=;Uf@U0l?-nd5cdfU#?3",
+            "fields": {
+              "NAV_TYPE": "LINE"
+            },
+            "inputs": {
+              "DO": {
+                "block": {
+                  "type": "action_block",
+                  "id": "J(syy,?=DKstZuH@N8h:",
+                  "fields": {
+                    "ACTION_TYPE": "MOVE_F"
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "navigation_block_actionable",
+                "id": "RSG]L`kjh@vJg_@=GEq|",
+                "fields": {
+                  "NAV_TYPE": "CROSS_R"
+                },
+                "inputs": {
+                  "DO": {
+                    "block": {
+                      "type": "action_block",
+                      "id": "+KZI]T![Av}manmPYU[@",
+                      "fields": {
+                        "ACTION_TYPE": "MOVE_F"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "navigation_block_actionable",
+                    "id": "Ws}cUm:|OQ2XtrYE`/!k",
+                    "fields": {
+                      "NAV_TYPE": "LINE"
+                    },
+                    "inputs": {
+                      "DO": {
+                        "block": {
+                          "type": "action_block",
+                          "id": "hxI(z;zg,@RLxxtyI#K+",
+                          "fields": {
+                            "ACTION_TYPE": "MOVE_F"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "navigation_block_actionable",
+                        "id": "LRgz@Tjhk3ju9E_}s*-+",
+                        "fields": {
+                          "NAV_TYPE": "CROSS_R"
+                        },
+                        "inputs": {
+                          "DO": {
+                            "block": {
+                              "type": "action_block",
+                              "id": "JkuyWbU9_Z*ZB@YqA1lu",
+                              "fields": {
+                                "ACTION_TYPE": "MOVE_F"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "navigation_block_actionable",
+                            "id": "96v[bV6o8#6wrV`?0Y)P",
+                            "fields": {
+                              "NAV_TYPE": "LINE"
+                            },
+                            "inputs": {
+                              "DO": {
+                                "block": {
+                                  "type": "action_block",
+                                  "id": "._q^llu|MLkG]~s)b,(M",
+                                  "fields": {
+                                    "ACTION_TYPE": "MOVE_F"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "navigation_block_actionable",
+                                "id": "ikZnmwu|`3H6Kx|%=l!o",
+                                "fields": {
+                                  "NAV_TYPE": "CROSS_R"
+                                },
+                                "inputs": {
+                                  "DO": {
+                                    "block": {
+                                      "type": "action_block",
+                                      "id": "*2$|4XnIJ44-*IGE0[SU",
+                                      "fields": {
+                                        "ACTION_TYPE": "TURN_R"
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "navigation_block_actionable",
+                                    "id": "M+VCzrCX?YWq?[6@#%Nq",
+                                    "fields": {
+                                      "NAV_TYPE": "LINE"
+                                    },
+                                    "inputs": {
+                                      "DO": {
+                                        "block": {
+                                          "type": "action_block",
+                                          "id": "4*nS=K.vQ9BhSL8XYA]H",
+                                          "fields": {
+                                            "ACTION_TYPE": "MOVE_F"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "navigation_block_actionable",
+                                        "id": "Goxp(0hS-m80uMaC:K%,",
+                                        "fields": {
+                                          "NAV_TYPE": "CROSS_L"
+                                        },
+                                        "inputs": {
+                                          "DO": {
+                                            "block": {
+                                              "type": "action_block",
+                                              "id": "0p#%*ScHD[P$XBJ1_t$G",
+                                              "fields": {
+                                                "ACTION_TYPE": "TURN_L"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "navigation_block_actionable",
+                                            "id": "$).%x+Vwz;u}f=E*#,Tm",
+                                            "fields": {
+                                              "NAV_TYPE": "LINE"
+                                            },
+                                            "inputs": {
+                                              "DO": {
+                                                "block": {
+                                                  "type": "action_block",
+                                                  "id": "[1H;NTwV6t}EF:_4g:h]",
+                                                  "fields": {
+                                                    "ACTION_TYPE": "MOVE_F"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "navigation_block_actionable",
+                                                "id": "zYVdexueltSqDerMY_M:",
+                                                "fields": {
+                                                  "NAV_TYPE": "PICK"
+                                                },
+                                                "inputs": {
+                                                  "DO": {
+                                                    "block": {
+                                                      "type": "action_block",
+                                                      "id": "kw67lG-Fd3;9jin.G$KO",
+                                                      "fields": {
+                                                        "ACTION_TYPE": "PICKUP_BOX"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "navigation_block_actionable",
+                                                    "id": "LbsN5J6]4;kY`X?lD_Lu",
+                                                    "fields": {
+                                                      "NAV_TYPE": "LINE"
+                                                    },
+                                                    "inputs": {
+                                                      "DO": {
+                                                        "block": {
+                                                          "type": "action_block",
+                                                          "id": "$IW0),?pjT`VRomfmh:*",
+                                                          "fields": {
+                                                            "ACTION_TYPE": "MOVE_BACK"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "navigation_block_actionable",
+                                                        "id": "~H$LE^CZ8v?n6||9ER*r",
+                                                        "fields": {
+                                                          "NAV_TYPE": "CROSS_X"
+                                                        },
+                                                        "inputs": {
+                                                          "DO": {
+                                                            "block": {
+                                                              "type": "action_block",
+                                                              "id": "xExDL6at95O}nq7^x#aS",
+                                                              "fields": {
+                                                                "ACTION_TYPE": "TURN_R"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "navigation_block_actionable",
+                                                            "id": "V|pXs0Q^Ap!V(#T($2*e",
+                                                            "fields": {
+                                                              "NAV_TYPE": "LINE"
+                                                            },
+                                                            "inputs": {
+                                                              "DO": {
+                                                                "block": {
+                                                                  "type": "action_block",
+                                                                  "id": "w]B1cv))SruXF~WkhBt7",
+                                                                  "fields": {
+                                                                    "ACTION_TYPE": "MOVE_F"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "navigation_block_actionable",
+                                                                "id": "GA5aN!2=*GtbHJ6$~5a@",
+                                                                "fields": {
+                                                                  "NAV_TYPE": "CROSS_R"
+                                                                },
+                                                                "inputs": {
+                                                                  "DO": {
+                                                                    "block": {
+                                                                      "type": "action_block",
+                                                                      "id": "k{w^lX;hto9Wi-WRWGuG",
+                                                                      "fields": {
+                                                                        "ACTION_TYPE": "TURN_R"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "navigation_block_actionable",
+                                                                    "id": "H#DuzCgEzLFK5tj(eo%f",
+                                                                    "fields": {
+                                                                      "NAV_TYPE": "LINE"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "DO": {
+                                                                        "block": {
+                                                                          "type": "action_block",
+                                                                          "id": "Q1$Wu;h7|F0?0MV6nY[+",
+                                                                          "fields": {
+                                                                            "ACTION_TYPE": "MOVE_F"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "navigation_block_actionable",
+                                                                        "id": "$r7gk^_LR:`ed!2IZ:xF",
+                                                                        "fields": {
+                                                                          "NAV_TYPE": "CROSS_X"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "DO": {
+                                                                            "block": {
+                                                                              "type": "action_block",
+                                                                              "id": "2=x[aFCHd_.SN#:?!ark",
+                                                                              "fields": {
+                                                                                "ACTION_TYPE": "TURN_R"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "navigation_block_actionable",
+                                                                            "id": "tM@Wg-gSH=owL?R~u)mn",
+                                                                            "fields": {
+                                                                              "NAV_TYPE": "LINE"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "DO": {
+                                                                                "block": {
+                                                                                  "type": "action_block",
+                                                                                  "id": "@``.n5/=8Qnl(HRIu[c=",
+                                                                                  "fields": {
+                                                                                    "ACTION_TYPE": "MOVE_F"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "next": {
+                                                                              "block": {
+                                                                                "type": "navigation_block_actionable",
+                                                                                "id": "RG#7Q%bad+~~q+}6v:1w",
+                                                                                "fields": {
+                                                                                  "NAV_TYPE": "PICK"
+                                                                                },
+                                                                                "inputs": {
+                                                                                  "DO": {
+                                                                                    "block": {
+                                                                                      "type": "action_block",
+                                                                                      "id": "24cBFnH;2#5DY{A+j0v6",
+                                                                                      "fields": {
+                                                                                        "ACTION_TYPE": "DROP_BOX"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "next": {
+                                                                                  "block": {
+                                                                                    "type": "navigation_block_actionable",
+                                                                                    "id": "LbnqGm}@m4ZVl9*qlIsO",
+                                                                                    "fields": {
+                                                                                      "NAV_TYPE": "LINE"
+                                                                                    },
+                                                                                    "inputs": {
+                                                                                      "DO": {
+                                                                                        "block": {
+                                                                                          "type": "action_block",
+                                                                                          "id": "XDH6@meCH$:r00$wRPw/",
+                                                                                          "fields": {
+                                                                                            "ACTION_TYPE": "MOVE_BACK"
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

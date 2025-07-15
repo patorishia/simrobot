@@ -1,0 +1,367 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "navigation_block_actionable",
+        "id": "N7Naf!1u2BxLL4Ut0FlU",
+        "x": -459,
+        "y": -261,
+        "fields": {
+          "NAV_TYPE": "CROSS_L"
+        },
+        "inputs": {
+          "DO": {
+            "block": {
+              "type": "action_block",
+              "id": "HTcB73Z|C:p:6~}o^SP1",
+              "fields": {
+                "ACTION_TYPE": "MOVE_F"
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "navigation_block_actionable",
+            "id": "#`yQ.7m:[Qq)dGBLRi4y",
+            "fields": {
+              "NAV_TYPE": "LINE"
+            },
+            "inputs": {
+              "DO": {
+                "block": {
+                  "type": "action_block",
+                  "id": "/soFx5/PU}16h39D[?2p",
+                  "fields": {
+                    "ACTION_TYPE": "MOVE_F"
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "navigation_block_actionable",
+                "id": "2|PZ4ef{]JSl6G+U5/b~",
+                "fields": {
+                  "NAV_TYPE": "CROSS_R"
+                },
+                "inputs": {
+                  "DO": {
+                    "block": {
+                      "type": "action_block",
+                      "id": "4%(em*9TC_CK?INygVgo",
+                      "fields": {
+                        "ACTION_TYPE": "TURN_R"
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "navigation_block_actionable",
+                    "id": "#M^(#yyVu$t2#7%_p=7Q",
+                    "fields": {
+                      "NAV_TYPE": "LINE"
+                    },
+                    "inputs": {
+                      "DO": {
+                        "block": {
+                          "type": "action_block",
+                          "id": "B[g/dzRFWiKamXOsp^@=",
+                          "fields": {
+                            "ACTION_TYPE": "MOVE_F"
+                          }
+                        }
+                      }
+                    },
+                    "next": {
+                      "block": {
+                        "type": "navigation_block_actionable",
+                        "id": "oW:75C7dB)h*SMTNQTXN",
+                        "fields": {
+                          "NAV_TYPE": "PICK"
+                        },
+                        "inputs": {
+                          "DO": {
+                            "block": {
+                              "type": "action_block",
+                              "id": "nIRY4uC`%EJ#59p,%3_)",
+                              "fields": {
+                                "ACTION_TYPE": "PICKUP_BOX"
+                              }
+                            }
+                          }
+                        },
+                        "next": {
+                          "block": {
+                            "type": "navigation_block_actionable",
+                            "id": "LJm@8g41M~.4e.#]asdg",
+                            "fields": {
+                              "NAV_TYPE": "LINE"
+                            },
+                            "inputs": {
+                              "DO": {
+                                "block": {
+                                  "type": "action_block",
+                                  "id": "$3{aTNh)0$$Nqi1y@h6:",
+                                  "fields": {
+                                    "ACTION_TYPE": "MOVE_BACK"
+                                  }
+                                }
+                              }
+                            },
+                            "next": {
+                              "block": {
+                                "type": "navigation_block_actionable",
+                                "id": "V*`K|,wil2PSzwR95#k,",
+                                "fields": {
+                                  "NAV_TYPE": "CROSS_X"
+                                },
+                                "inputs": {
+                                  "DO": {
+                                    "block": {
+                                      "type": "action_block",
+                                      "id": "e,`t5$KviGl4nn.D6CSS",
+                                      "fields": {
+                                        "ACTION_TYPE": "TURN_R"
+                                      }
+                                    }
+                                  }
+                                },
+                                "next": {
+                                  "block": {
+                                    "type": "navigation_block_actionable",
+                                    "id": "c6!1lVEkq@.752d1Db+/",
+                                    "fields": {
+                                      "NAV_TYPE": "LINE"
+                                    },
+                                    "inputs": {
+                                      "DO": {
+                                        "block": {
+                                          "type": "action_block",
+                                          "id": "Wr9#anzJ/U4W,9SuY;k6",
+                                          "fields": {
+                                            "ACTION_TYPE": "MOVE_F"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "next": {
+                                      "block": {
+                                        "type": "navigation_block_actionable",
+                                        "id": "X4sv?wigd=(AO=G]{cHj",
+                                        "fields": {
+                                          "NAV_TYPE": "CROSS_R"
+                                        },
+                                        "inputs": {
+                                          "DO": {
+                                            "block": {
+                                              "type": "action_block",
+                                              "id": "gE+OnCH3M;K%4jf?6Rt#",
+                                              "fields": {
+                                                "ACTION_TYPE": "TURN_R"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "next": {
+                                          "block": {
+                                            "type": "navigation_block_actionable",
+                                            "id": "?Mw/fmQ*hi^ONX$p|~~]",
+                                            "fields": {
+                                              "NAV_TYPE": "LINE"
+                                            },
+                                            "inputs": {
+                                              "DO": {
+                                                "block": {
+                                                  "type": "action_block",
+                                                  "id": "WqP0Q6Ef~{!MoEFD}eEl",
+                                                  "fields": {
+                                                    "ACTION_TYPE": "MOVE_F"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "next": {
+                                              "block": {
+                                                "type": "navigation_block_actionable",
+                                                "id": "$0iZh;Zm%n3YOslUv!p_",
+                                                "fields": {
+                                                  "NAV_TYPE": "CROSS_X"
+                                                },
+                                                "inputs": {
+                                                  "DO": {
+                                                    "block": {
+                                                      "type": "action_block",
+                                                      "id": ":b4Eed+@E2.aa*y2wB-t",
+                                                      "fields": {
+                                                        "ACTION_TYPE": "MOVE_F"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "next": {
+                                                  "block": {
+                                                    "type": "navigation_block_actionable",
+                                                    "id": "}t]@]524Ja:kPUNX`dwF",
+                                                    "fields": {
+                                                      "NAV_TYPE": "LINE"
+                                                    },
+                                                    "inputs": {
+                                                      "DO": {
+                                                        "block": {
+                                                          "type": "action_block",
+                                                          "id": "Q)3:;niBVDCRHDSaYS7=",
+                                                          "fields": {
+                                                            "ACTION_TYPE": "MOVE_F"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "next": {
+                                                      "block": {
+                                                        "type": "navigation_block_actionable",
+                                                        "id": "8_snVa_Wx-yE@O;kxbfi",
+                                                        "fields": {
+                                                          "NAV_TYPE": "CROSS_X"
+                                                        },
+                                                        "inputs": {
+                                                          "DO": {
+                                                            "block": {
+                                                              "type": "action_block",
+                                                              "id": "i/o9;pP`rnh*X8%d/.5t",
+                                                              "fields": {
+                                                                "ACTION_TYPE": "TURN_L"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "next": {
+                                                          "block": {
+                                                            "type": "navigation_block_actionable",
+                                                            "id": "Y-ToTG5aU|.~p_bwny:*",
+                                                            "fields": {
+                                                              "NAV_TYPE": "LINE"
+                                                            },
+                                                            "inputs": {
+                                                              "DO": {
+                                                                "block": {
+                                                                  "type": "action_block",
+                                                                  "id": "8561OO.%AC+zeQ/-o60.",
+                                                                  "fields": {
+                                                                    "ACTION_TYPE": "MOVE_F"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "next": {
+                                                              "block": {
+                                                                "type": "navigation_block_actionable",
+                                                                "id": "EKu1R`DbC9|-wm;w^cjn",
+                                                                "fields": {
+                                                                  "NAV_TYPE": "CROSS_R"
+                                                                },
+                                                                "inputs": {
+                                                                  "DO": {
+                                                                    "block": {
+                                                                      "type": "action_block",
+                                                                      "id": "D_F1R|:/gdalbCFtJksu",
+                                                                      "fields": {
+                                                                        "ACTION_TYPE": "TURN_R"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "next": {
+                                                                  "block": {
+                                                                    "type": "navigation_block_actionable",
+                                                                    "id": "yuL}EQ7B|+Xic,f71vU~",
+                                                                    "fields": {
+                                                                      "NAV_TYPE": "LINE"
+                                                                    },
+                                                                    "inputs": {
+                                                                      "DO": {
+                                                                        "block": {
+                                                                          "type": "action_block",
+                                                                          "id": "BvB_)+g=QQzWl%?vTEBM",
+                                                                          "fields": {
+                                                                            "ACTION_TYPE": "MOVE_F"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "next": {
+                                                                      "block": {
+                                                                        "type": "navigation_block_actionable",
+                                                                        "id": "/sK.AmM+OS!#PXd?aFL3",
+                                                                        "fields": {
+                                                                          "NAV_TYPE": "PICK"
+                                                                        },
+                                                                        "inputs": {
+                                                                          "DO": {
+                                                                            "block": {
+                                                                              "type": "action_block",
+                                                                              "id": "trzd/)G,DKN{)%c1A;tN",
+                                                                              "fields": {
+                                                                                "ACTION_TYPE": "DROP_BOX"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "next": {
+                                                                          "block": {
+                                                                            "type": "navigation_block_actionable",
+                                                                            "id": "dmnhwUSY~]GZf4X05%Ld",
+                                                                            "fields": {
+                                                                              "NAV_TYPE": "LINE"
+                                                                            },
+                                                                            "inputs": {
+                                                                              "DO": {
+                                                                                "block": {
+                                                                                  "type": "action_block",
+                                                                                  "id": "}GMdGfW5J}E@(=O!S6d~",
+                                                                                  "fields": {
+                                                                                    "ACTION_TYPE": "MOVE_BACK"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
